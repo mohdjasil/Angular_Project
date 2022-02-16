@@ -3,6 +3,8 @@
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <input type="text" [(ngModel)]="filteredStatus">
       <button style="margin-left: 5px;" class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+      <br><br>
+      <h3>App Status: {{ appStatus | async }}</h3>
       <hr>
       <ul class="list-group">
         <li
