@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators'
 import { Post } from './post.model';
+import { PostsService } from './posts.service';
 
 @Component({
   selector: 'app-root',
@@ -9,45 +10,33 @@ import { Post } from './post.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  loadedPosts = [];
+  loadedPosts: Post[] = [];
+  isFetching = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private postsService: PostsService) {}
   ngOnInit() {
-    this.fetchPosts();
+    this.isFetching = true;
+    this.postsService.fetchPosts().subscribe(posts => {
+      this.isFetching = false;
+      this.loadedPosts = posts;
+    });
   }
 
   onCreatePost(postData: Post) {
-    // Send Http request
-    // console.log(postData);
-    this.http.post(
-      'https://angular-http-15d3c-default-rtdb.firebaseio.com/posts.json',
-       postData).subscribe(responseData => {
-         console.log(responseData);
-       });
+    this.postsService.createAndStorePosts(postData.title, postData.content);
   }
 
   onFetchPosts() {
     // Send Http request
-    this.fetchPosts();
+    this.isFetching = true;
+    this.postsService.fetchPosts().subscribe(posts => {
+      this.isFetching = false;
+      this.loadedPosts = posts;
+    });
+    
   }
 
   onClearPosts() {
     // Send Http request
-  }
-
-  private fetchPosts(){
-    this.http.get<{ [key: string]: Post }>('https://angular-http-15d3c-default-rtdb.firebaseio.com/posts.json')
-    .pipe(
-      map(responseData => {
-        const postsArray: Post[] = [];
-        for(const key in responseData){
-          if(responseData.hasOwnProperty(key)) {
-            postsArray.push({...responseData[key], id: key});
-          }
-        }
-        return postsArray;
-      })
-    )
-    .subscribe(posts => {console.log(posts)});
   }
 }
