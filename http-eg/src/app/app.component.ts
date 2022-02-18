@@ -12,6 +12,9 @@ import { PostsService } from './posts.service';
 export class AppComponent {
   loadedPosts: Post[] = [];
   isFetching = false;
+  error = null;
+  errorStatus = '';
+  errorStatusMsg= '';
 
   constructor(private http: HttpClient, private postsService: PostsService) {}
   ngOnInit() {
@@ -19,6 +22,10 @@ export class AppComponent {
     this.postsService.fetchPosts().subscribe(posts => {
       this.isFetching = false;
       this.loadedPosts = posts;
+    },error => {
+      this.error = error.message;
+      this.errorStatus = error.status;
+      this.errorStatusMsg = error.statusText;
     });
   }
 
@@ -32,11 +39,20 @@ export class AppComponent {
     this.postsService.fetchPosts().subscribe(posts => {
       this.isFetching = false;
       this.loadedPosts = posts;
+    },error => {
+      this.error = error.message;
+      this.errorStatus = error.status;
+      this.errorStatusMsg = error.statusText;
     });
     
   }
 
   onClearPosts() {
     // Send Http request
+    this.postsService.deletePost().subscribe(
+      () => {
+        this.loadedPosts = [];
+      }
+    );
   }
 }
