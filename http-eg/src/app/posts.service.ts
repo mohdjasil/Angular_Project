@@ -34,20 +34,20 @@ export class PostsService {
                 headers: new HttpHeaders({ 'Custom': 'Hello' }),
                 params: searchParams
             })
-        .pipe(
-            map(responseData => {
-            const postsArray: Post[] = [];
-            for(const key in responseData){
-                if(responseData.hasOwnProperty(key)) {
-                    postsArray.push({...responseData[key], id: key});
+            .pipe(
+                map(responseData => {
+                const postsArray: Post[] = [];
+                for(const key in responseData){
+                    if(responseData.hasOwnProperty(key)) {
+                        postsArray.push({...responseData[key], id: key});
+                    }
                 }
-            }
-            return postsArray;
-        }),
-        catchError(errorRes => {
-            return throwError(errorRes);
-        })
-        );
+                return postsArray;
+            }),
+            catchError(errorRes => {
+                return throwError(errorRes);
+            })
+            );
         
     }
 
