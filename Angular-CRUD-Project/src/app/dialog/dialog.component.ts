@@ -36,9 +36,11 @@ export class DialogComponent implements OnInit {
       this.apiService.storeProducts(this.productForm.value)
         .subscribe({
           next: (responseData) => {
-            alert("Product Added Succesfully")
+            alert("Product Added Succesfully");
+            this.productForm.reset();
+            this.dialogRef.close();
           },
-          error: (responseData) => {
+          error: (errorData) => {
             alert("Error While Adding")
           }
         });
