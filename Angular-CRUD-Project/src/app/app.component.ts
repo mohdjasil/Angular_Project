@@ -29,6 +29,10 @@ export class AppComponent implements OnInit {
     this.dialog.open(DialogComponent, {
       width: '30%',
       height: '85%'
+    }).afterClosed().subscribe(val => {
+      if(val==='save') {
+        this.getProducts();
+      }
     });
   }
 
@@ -44,6 +48,29 @@ export class AppComponent implements OnInit {
           console.log(errorData);
         }
       });
+  }
+
+  editProduct(row: any) {
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+      data: row
+    }).afterClosed().subscribe(val => {
+      if(val==='update') {
+        this.getProducts();
+      }
+    });
+  }
+
+  deleteProduct(id: number) {
+    this.apiService.deleteProduct(id).subscribe({
+      next: (response) => {
+        alert("Product Deleted Successfully");
+        this.getProducts();
+      },
+      error: () => {
+        alert("Error Occured While Deleting");
+      }
+    });
   }
 
   applyFilter(event: Event) {

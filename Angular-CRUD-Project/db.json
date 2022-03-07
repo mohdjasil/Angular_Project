@@ -3,20 +3,11 @@
     {
       "productName": "Apple",
       "category": "Fruits",
-      "freshness": "Refurbished",
+      "freshness": "Brand New",
       "price": 150,
       "comment": "Super Fresh",
       "date": "2022-03-05T18:30:00.000Z",
       "id": 1
-    },
-    {
-      "productName": "Orange",
-      "category": "Fruits",
-      "freshness": "Brand New",
-      "price": 120,
-      "comment": "Tasty",
-      "date": "2022-03-06T18:30:00.000Z",
-      "id": 2
     }
   ],
   "comments": [
