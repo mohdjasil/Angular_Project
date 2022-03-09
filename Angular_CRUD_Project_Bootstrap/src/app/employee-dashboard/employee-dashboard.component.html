@@ -1,0 +1,81 @@
+<nav class="navbar navbar-light bg-primary">
+  <div class="container-fluid">
+    <h1 style="color: aliceblue">Angular CRUD</h1>
+    <div class="d-flex">
+      <button
+        type="button"
+        class="btn btn-success"
+        (click)="open(content)">
+        Add Employee
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Empolyee Details</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formValue">
+        <div class="mb-3">
+          <label class="form-label">First Name</label>
+          <input formControlName="firstName" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Last Name</label>
+          <input formControlName="lastName" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email ID</label>
+          <input formControlName="email" type="email" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Mobile Number</label>
+          <input formControlName="mobile" type="number" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Salary</label>
+          <input formControlName="salary" type="number" class="form-control">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Submit')">Submit</button>
+    </div>
+  </ng-template>
+
+<div class="container">
+    <table class="table table-bordered mt-3 p-5">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Employee ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">E-Mail</th>
+            <th scope="col">Mobile No.</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Mohamed</td>
+                <td>Jasil</td>
+                <td>jasil122@gmail.com</td>
+                <td>39489384</td>
+                <td>$ 5000</td>
+                <td>
+                    <button class="btn btn-info">Edit</button>
+                    <button class="btn btn-danger mx-3">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+</div>
+
+
