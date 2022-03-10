@@ -107,6 +107,7 @@ export class EmployeeDashboardComponent implements OnInit {
     this.apiService.updateEmployee(this.formValue.value, this.employeeObj.id).subscribe({
       next: (responseData) => {
         alert("Employee Details Updated Succesfully");
+        this.formValue.reset();
         this.ngbModal.dismissAll();
         this.getAllEmployees();
       },
