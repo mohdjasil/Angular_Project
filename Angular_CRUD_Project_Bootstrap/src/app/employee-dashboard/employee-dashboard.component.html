@@ -44,7 +44,8 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
-      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Submit')">Submit</button>
+      <button *ngIf="showAddButton" type="button" class="btn btn-outline-primary" (click)="modal.close('Submit')">Add</button>
+      <button *ngIf="showUpdateButton" type="button" class="btn btn-outline-primary" (click)="onEditEmployee()">Update</button>
     </div>
   </ng-template>
 
@@ -66,12 +67,12 @@
                 <td>{{employee.id}}</td>
                 <td>{{employee.firstName}}</td>
                 <td>{{employee.lastName}}</td>
-                <td>j{{employee.email}}</td>
+                <td>{{employee.email}}</td>
                 <td>{{employee.mobile}}</td>
                 <td>{{employee.salary}}</td>
                 <td>
-                    <button class="btn btn-info">Edit</button>
-                    <button class="btn btn-danger mx-3">Delete</button>
+                    <button class="btn btn-info" (click)="openEditModal(content, employee)">Edit</button>
+                    <button class="btn btn-danger mx-3" (click)="deleteEmployee(employee)">Delete</button>
                 </td>
             </tr>
         </tbody>

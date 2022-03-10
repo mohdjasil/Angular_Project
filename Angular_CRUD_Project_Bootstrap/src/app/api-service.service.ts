@@ -16,4 +16,12 @@ export class ApiServiceService {
   fetchEmployees() {
     return this.http.get('http://localhost:3000/employees/');
   }
+
+  deleteEmployee(id: number) {
+    return this.http.delete('http://localhost:3000/employees/'+id);
+  }
+
+  updateEmployee(data: EmployeeModel, id: number) {
+    return this.http.put('http://localhost:3000/employees/'+id, data);
+  }
 }
