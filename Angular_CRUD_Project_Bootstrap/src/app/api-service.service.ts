@@ -12,4 +12,8 @@ export class ApiServiceService {
   storeEmployee(data: EmployeeModel) {
     return this.http.post('http://localhost:3000/employees/', data);
   }
+
+  fetchEmployees() {
+    return this.http.get('http://localhost:3000/employees/');
+  }
 }

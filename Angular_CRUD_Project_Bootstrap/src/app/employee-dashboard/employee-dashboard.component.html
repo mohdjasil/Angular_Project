@@ -62,13 +62,13 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Mohamed</td>
-                <td>Jasil</td>
-                <td>jasil122@gmail.com</td>
-                <td>39489384</td>
-                <td>$ 5000</td>
+            <tr *ngFor="let employee of employeeData">
+                <td>{{employee.id}}</td>
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>j{{employee.email}}</td>
+                <td>{{employee.mobile}}</td>
+                <td>{{employee.salary}}</td>
                 <td>
                     <button class="btn btn-info">Edit</button>
                     <button class="btn btn-danger mx-3">Delete</button>

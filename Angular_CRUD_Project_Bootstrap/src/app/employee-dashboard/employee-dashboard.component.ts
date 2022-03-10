@@ -11,6 +11,7 @@ import { ApiServiceService } from '../api-service.service';
 export class EmployeeDashboardComponent implements OnInit {
   closeResult = '';
   formValue !: FormGroup;
+  employeeData !: any;
 
   constructor(private ngbModal: NgbModal, private formBuilder: FormBuilder, private apiService: ApiServiceService) { }
 
@@ -21,7 +22,8 @@ export class EmployeeDashboardComponent implements OnInit {
       email: [''],
       mobile: [''],
       salary: [''],
-    })
+    });
+    this.getAllEmployees();
   }
 
   open(content: any) {
@@ -57,6 +59,19 @@ export class EmployeeDashboardComponent implements OnInit {
       }
     });
     
+  }
+
+  getAllEmployees() {
+    this.apiService.fetchEmployees().subscribe({
+      next: (responseData) => {
+        console.log(responseData);
+        this.employeeData = responseData;
+      },
+      error: (errorData) => {
+        console.log(errorData);
+        alert("Error While Fetching Employees");
+      }
+    });
   }
 
 }
