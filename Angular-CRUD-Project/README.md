@@ -1,6 +1,8 @@
 # AngularCRUDProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
+This Project mainly focuses on CRUD Operation in Angular using Material UI.
+It Uses Json Server as the Backend.
 
 ## Development server
 
